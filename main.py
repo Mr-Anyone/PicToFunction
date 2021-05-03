@@ -11,7 +11,7 @@ def plot_image(img):
 
 
 def get_contours(img_path):
-    image = cv2.imread('Itachi.jpeg')
+    image = cv2.imread(img_path)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     edged = cv2.Canny(gray, 30, 200)
     contours, hierarchy = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
@@ -27,16 +27,16 @@ def filter_countours(contours, threshold):
 
 if __name__ == "__main__":
     contours, image = get_contours("Itachi.jpeg")
-    contours = filter_countours(contours, 1500)
+    contours = filter_countours(contours, 250)
 
-    # mask = np.zeros(image.shape)
-    # cv2.drawContours(mask, contours, -1, (0, 255, 0), 1)
-    # print("Showing Contours")
-    # cv2.imshow("Contours", mask)
-    # cv2.waitKey(0)
+    mask = np.zeros(image.shape)
+    cv2.drawContours(mask, contours, -1, (0, 255, 0), 1)
+    print("Showing Contours")
+    cv2.imshow("Contours", mask)
+    cv2.waitKey(0)
 
     print("Solving Contours")
 
     solver = Solver(contours)
-    solver.solve()
+    solver.solve(max_equations=1000)
     print("Solved")
