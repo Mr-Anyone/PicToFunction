@@ -1,13 +1,13 @@
-import matplotlib.pyplot as plt
 import cv2
-
-def solver():
-    return "Hello World"
+import matplotlib.pyplot as plt
+import numpy as np
+from solver import Solver
 
 
 def plot_image(img):
     plt.imshow(img, cmap='binary')
     plt.show()
+
 
 def get_contours(img_path):
     image = cv2.imread('Itachi.jpeg')
@@ -16,15 +16,26 @@ def get_contours(img_path):
     contours, hierarchy = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     return contours, image
 
+
+def filter_countours(contours, threshold):
+    result = []
+    for contour in contours:
+        if len(contour) > threshold:
+            result.append(contour)
+    return result
+
 if __name__ == "__main__":
     contours, image = get_contours("Itachi.jpeg")
-    short_line = 50 # Small that this values means this is a short line
-    print(len(contours), type(contours))
-    real_stuff = []
+    contours = filter_countours(contours, 1500)
 
-    for contour in contours:
-        if len(contour) > short_line:
-            real_stuff.append(contour)
-    cv2.drawContours(image, real_stuff[:10], -1, (0, 255, 0), 1)
-    cv2.imshow("Contours",image)
-    cv2.waitKey(0)
+    # mask = np.zeros(image.shape)
+    # cv2.drawContours(mask, contours, -1, (0, 255, 0), 1)
+    # print("Showing Contours")
+    # cv2.imshow("Contours", mask)
+    # cv2.waitKey(0)
+
+    print("Solving Contours")
+
+    solver = Solver(contours)
+    solver.solve()
+    print("Solved")
