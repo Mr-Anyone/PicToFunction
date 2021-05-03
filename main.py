@@ -1,6 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+from desmos import start_plot
 from solver import Solver
 
 
