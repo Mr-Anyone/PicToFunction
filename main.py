@@ -34,17 +34,18 @@ def init():
 
 if __name__ == "__main__":
     init()
-    contours, image = get_contours("Logo.jpeg")
-    contours = filter_countours(contours, 0)
+    contours, image = get_contours("Itachi.jpeg")
+    contours = filter_countours(contours, 250)
 
     mask = np.zeros(image.shape)
     cv2.drawContours(mask, contours, -1, (0, 255, 0), 1)
     print("Showing Contours")
+    print(f"Total of : {len(contours)}")
     cv2.imshow("Contours", mask)
     cv2.waitKey(0)
 
     print("Solving Contours")
-
-    solver = Solver(contours)
-    solver.solve(max_equations=105)
+    height, width, _ = image.shape
+    solver = Solver(contours, width, height)
+    solver.solve(max_equations=1000)
     print("Solved")
