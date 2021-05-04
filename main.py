@@ -35,7 +35,7 @@ def init():
 if __name__ == "__main__":
     init()
     contours, image = get_contours("Logo.jpeg")
-    contours = filter_countours(contours, 10)
+    contours = filter_countours(contours, 0)
 
     # mask = np.zeros(image.shape)
     # cv2.drawContours(mask, contours, -1, (0, 255, 0), 1)
@@ -46,5 +46,5 @@ if __name__ == "__main__":
     print("Solving Contours")
 
     solver = Solver(contours)
-    solver.solve(max_equations=500)
+    solver.solve(max_equations=105)
     print("Solved")

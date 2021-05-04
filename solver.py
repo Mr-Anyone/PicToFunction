@@ -17,7 +17,12 @@ class Solver():
                 try:
                     start_point = contour[i * split_ratio]
                     x1, y1 = start_point[0][0], start_point[0][1]
-                    end_point = contour[(i + 1) * split_ratio]
+
+                    if (i + 1) * split_ratio >= len(contour):
+                        end_point = contour[-1]
+                    else:
+                        end_point = contour[(i + 1) * split_ratio]
+
                     x2, y2 = end_point[0][0], end_point[0][1]
 
                     if x1 - x2 != 0:
@@ -27,6 +32,7 @@ class Solver():
                         equation = LinearEquations(k, b, x1, x2)
                         equation.save()
                     else:
+                        print("Vertical Line")
                         equation = VerticalLine(x1, y1, y2)
                         equation.save()
 

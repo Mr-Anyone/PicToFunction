@@ -44,7 +44,7 @@ class LinearEquations(Equation):
 
     def write_function(self):
         x1, x2 = self.get_desmos_domain()
-        return f"f(x) = {self.k}x + {self.b} " + r"{ " + f"{x1} <= x {x2}" + r"}"
+        return f"f(x) = {self.k}x + {self.b} " + r"{ " + f"{x1} <= x <= {x2}" + r"}"
 
 
 class VerticalLine(Equation):
