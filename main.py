@@ -1,7 +1,8 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-from desmos import start_plot
+import shutil
+import os
 from solver import Solver
 
 
@@ -25,9 +26,16 @@ def filter_countours(contours, threshold):
             result.append(contour)
     return result
 
+def init():
+    try:
+        shutil.rmtree(os.path.join(os.curdir, "Equations"))
+    except Exception as e:
+        pass
+
 if __name__ == "__main__":
-    contours, image = get_contours("Itachi.jpeg")
-    contours = filter_countours(contours, 250)
+    init()
+    contours, image = get_contours("Kun.jpeg")
+    contours = filter_countours(contours, 10)
 
     mask = np.zeros(image.shape)
     cv2.drawContours(mask, contours, -1, (0, 255, 0), 1)
@@ -38,5 +46,5 @@ if __name__ == "__main__":
     print("Solving Contours")
 
     solver = Solver(contours)
-    solver.solve(max_equations=1000)
+    solver.solve(max_equations=500)
     print("Solved")
