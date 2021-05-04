@@ -21,8 +21,7 @@ def start_plot(delay=1):
     for filename in os.listdir(save_dir):
         if ".pickle" in filename:  # Prevent .DS_Store from loading
             obj = load_object(filename)
-            x1, x2 = obj.get_desmos_domain()
-            function_string = write_function(obj, x1, x2)
+            function_string = obj.write_function()
 
             keyboard.type(function_string)
             keyboard.press(Key.enter)

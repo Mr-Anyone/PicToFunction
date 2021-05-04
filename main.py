@@ -34,14 +34,14 @@ def init():
 
 if __name__ == "__main__":
     init()
-    contours, image = get_contours("Kun.jpeg")
+    contours, image = get_contours("Logo.jpeg")
     contours = filter_countours(contours, 10)
 
-    mask = np.zeros(image.shape)
-    cv2.drawContours(mask, contours, -1, (0, 255, 0), 1)
-    print("Showing Contours")
-    cv2.imshow("Contours", mask)
-    cv2.waitKey(0)
+    # mask = np.zeros(image.shape)
+    # cv2.drawContours(mask, contours, -1, (0, 255, 0), 1)
+    # print("Showing Contours")
+    # cv2.imshow("Contours", mask)
+    # cv2.waitKey(0)
 
     print("Solving Contours")
 
