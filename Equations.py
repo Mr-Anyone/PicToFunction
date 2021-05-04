@@ -19,6 +19,12 @@ class Equation():
         except Exception as e:
             pass
 
+    def remove(self):
+        try:
+            os.remove(os.path.join(self.save_dir, self.filename))
+        except Exception as e:
+            pass
+
 
 class LinearEquations(Equation):
     save_dir = os.path.join(os.curdir, "Equations")
