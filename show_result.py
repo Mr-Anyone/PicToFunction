@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 from main import IMG_NAME, get_contours, filter_contours, FILTER_COUNT, draw_contours
 import cv2
 import numpy as np

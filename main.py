@@ -5,8 +5,8 @@ import shutil
 import os
 from solver import Solver
 
-MAX_EQ = 1500
-IMG_NAME = "Tset.jpeg"
+MAX_EQ = 1000
+IMG_NAME = "Skull.jpeg"
 FILTER_COUNT = 100
 
 def plot_image(img):

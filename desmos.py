@@ -5,7 +5,7 @@ from pynput.keyboard import Controller, Key, Listener
 
 save_dir = os.path.join(os.curdir, "Equations")
 run = False
-
+DELAY = 1
 
 def load_object(filename):
     f = open(os.path.join(save_dir, filename), 'rb')
@@ -16,7 +16,7 @@ def write_function(obj, x1, x2):
     return f"f(x) = {obj.k}x + {obj.b} " + r"{" + f"{x1} <= x <= {x2}" + r"}"
 
 
-def start_plot(delay=1):
+def start_plot(delay=DELAY):
     global run
 
     keyboard = Controller()  # The keyboard controlling class
