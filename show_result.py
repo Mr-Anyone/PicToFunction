@@ -22,7 +22,6 @@ def draw_result(image):
             x1, y1 = point1
             x2, y2 = point2
             y1, y2 = int(height - y1), int(height - y2)
-            print(y1, y2)
             mask = cv2.line(mask, (x1, y1), (x2, y2), (255, 255, 255), 1)
     return mask
 
