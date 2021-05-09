@@ -53,6 +53,8 @@ if __name__ == "__main__":
         on_press=on_press,
         on_release=on_release)
     listener.start()
-
+    print("Program Started")
+    print("Press right alt to continue")
+    print("Press Left alt to Stop")
     while True:
         start_plot()

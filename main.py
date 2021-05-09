@@ -5,6 +5,9 @@ import shutil
 import os
 from solver import Solver
 
+MAX_EQ = 1500
+IMG_NAME = "Tset.jpeg"
+FILTER_COUNT = 100
 
 def plot_image(img):
     plt.imshow(img, cmap='binary')
@@ -19,7 +22,7 @@ def get_contours(img_path):
     return contours, image
 
 
-def filter_countours(contours, threshold):
+def filter_contours(contours, threshold):
     result = []
     for contour in contours:
         if len(contour) > threshold:
@@ -32,13 +35,17 @@ def init():
     except Exception as e:
         pass
 
-if __name__ == "__main__":
-    init()
-    contours, image = get_contours("Itachi.jpeg")
-    contours = filter_countours(contours, 250)
-
+def draw_contours(image, contours):
     mask = np.zeros(image.shape)
     cv2.drawContours(mask, contours, -1, (0, 255, 0), 1)
+    return mask
+
+if __name__ == "__main__":
+    init()
+    contours, image = get_contours(IMG_NAME)
+    contours = filter_contours(contours, FILTER_COUNT)
+
+    mask = draw_contours(image, contours)
     print("Showing Contours")
     print(f"Total of : {len(contours)}")
     cv2.imshow("Contours", mask)
@@ -47,5 +54,5 @@ if __name__ == "__main__":
     print("Solving Contours")
     height, width, _ = image.shape
     solver = Solver(contours, width, height)
-    solver.solve(max_equations=1000)
+    solver.solve(max_equations=MAX_EQ)
     print("Solved")

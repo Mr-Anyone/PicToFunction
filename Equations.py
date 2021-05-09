@@ -48,6 +48,10 @@ class LinearEquations(Equation):
         else:
             return self.x1, self.x2
 
+    def show_result_data(self):
+        x1, x2 = self.get_desmos_domain()
+        return (int(x1), int(self.k * x1 + self.b)), (int(x2), int(self.k * x2 + self.b))
+
     def write_function(self):
         x1, x2 = self.get_desmos_domain()
         return f"f(x) = {self.k}x + {self.b} " + r"{ " + f"{x1} <= x <= {x2}" + r"}"
@@ -63,12 +67,16 @@ class VerticalLine(Equation):
         if save:
             self.save()
 
-    def get_domain(self):
+    def show_result_data(self):
+        y1, y2 = self.get_desmos_range()
+        return (self.line_x, y1), (self.line_x, y2)
+
+    def get_desmos_range(self):
         if self.y1 > self.y2:
             return self.y2, self.y1
         else:
             return self.y1, self.y2
 
     def write_function(self):
-        y1, y2 = self.get_domain()
+        y1, y2 = self.get_desmos_range()
         return f" x = {self.line_x} " + r"{" + f"{y1}<= y <= {y2}" + "}"
