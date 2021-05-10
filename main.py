@@ -6,7 +6,7 @@ import os
 from solver import Solver
 
 MAX_EQ = 1000
-IMG_NAME = "Skull.jpeg"
+IMG_NAME = "David.jpeg"
 FILTER_COUNT = 100
 
 def plot_image(img):
